@@ -1,0 +1,50 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      	xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:p="http://primefaces.org/ui"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:f="http://java.sun.com/jsf/core">
+    
+    <ui:composition template="../template.xhtml">
+
+	<ui:define name="conteudo">
+		<p:panel header="Valor das locações por mês">
+			
+			<h:form id="formulario">
+
+				<h:panelGrid columns="2"> 
+					<h:outputLabel value="Ano:" />
+					<p:inputText value="#{locacaoController.ano}" />
+				
+				</h:panelGrid>
+			
+
+				<p:commandButton value="Gerar" ajax="false"
+					actionListener="#{locacaoController.graficoLinha()}"
+					update="@form:grafico" icon="ui-icon-search"/>
+
+					
+				<br/>	
+					
+				<p:outputPanel id="grafico">
+
+					<p:chart type="line" model="#{locacaoController.graficoLinha}" />
+
+				</p:outputPanel>
+					
+			</h:form>
+			
+			
+			
+		</p:panel>
+
+
+
+
+
+	</ui:define>
+
+</ui:composition>
+   
+    
+    
+</html>

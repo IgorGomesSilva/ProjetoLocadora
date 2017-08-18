@@ -1,0 +1,79 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      	xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:p="http://primefaces.org/ui"
+		xmlns:ui="http://java.sun.com/jsf/facelets">
+    
+    <ui:composition template="../template.xhtml">
+
+	<ui:define name="conteudo">
+		<p:panel header="Usuario">
+			<h:form id="formulario">
+				<p:growl showDetail="false" sticky="true"/>
+
+
+				<h:inputHidden value="#{usuarioController.usuario.idUsuario}" />
+
+
+				<h:panelGrid columns="2">
+					
+					<h:outputLabel value="E-mail"/>
+					<p:inputText value="#{usuarioController.usuario.email}"/>
+					
+					<h:outputLabel value="Senha"/>
+					<p:password feedback="true"  value="#{usuarioController.usuario.senha}"/>
+				</h:panelGrid>
+
+				<p:commandButton value="Salvar"
+					actionListener="#{usuarioController.salvar()}"
+					update="@form" icon="ui-icon-check" />
+					
+				<br/><br/>
+					
+				 <p:dataTable 
+	                value="#{usuarioController.listar()}"
+	                var="m"
+		            emptyMessage="Nenhum usuario cadastrado"
+		            paginator="true"
+		            rows="20"
+		            id="tabela">
+	
+	                <p:column headerText="Codigo" style="width:10%">
+	                    #{m.idUsuario}
+	                </p:column>
+	
+	                <p:column headerText="E-mail" style="width:40%">
+	                    #{m.email}
+	                </p:column>
+	                
+	                 <p:column headerText="Senha" style="width:40%">
+	                    ******
+	                </p:column>
+	                
+	                <p:column headerText="Editar" style="width:10%">
+	                 	<p:commandButton
+							actionListener="#{usuarioController.editar(m)}"
+							update="@form" process="@this" icon="ui-icon-pencil" />
+	                </p:column>
+	                
+	                <p:column headerText="Excluir" style="width:10%">
+	                    <p:commandButton
+							actionListener="#{usuarioController.excluir(m)}"
+							update="@form" process="@this" icon="ui-icon-close" />
+	                </p:column>
+	
+	            </p:dataTable>	
+					
+			</h:form>
+		</p:panel>
+
+
+
+
+
+	</ui:define>
+
+</ui:composition>
+   
+    
+    
+</html>

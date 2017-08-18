@@ -1,0 +1,71 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      	xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:p="http://primefaces.org/ui"
+		xmlns:ui="http://java.sun.com/jsf/facelets">
+    
+    <ui:composition template="../template.xhtml">
+
+	<ui:define name="conteudo">
+		<p:panel header="Opcional">
+			<h:form id="formulario">
+				<p:growl showDetail="false" sticky="true"/>
+
+
+				<h:inputHidden value="#{opcionalController.opcional.idOpcional}" />
+
+
+				<h:panelGrid columns="2">
+					<h:outputLabel value="Descrição:"/>
+					<p:inputText value="#{opcionalController.opcional.descricao}"/>
+				</h:panelGrid>
+
+				<p:commandButton value="Salvar"
+					actionListener="#{opcionalController.salvar()}"
+					update="@form" icon="ui-icon-check" />
+					
+				<br/><br/>
+					
+				 <p:dataTable 
+	                value="#{opcionalController.listar()}"
+	                var="m"
+		            emptyMessage="Nenhum opcional cadastrado"
+		            paginator="true"
+		            rows="20"
+		            id="tabela">
+	
+	                <p:column headerText="Codigo" style="width:10%">
+	                    #{m.idOpcional}
+	                </p:column>
+	
+	                <p:column headerText="Descriçao" style="width:70%">
+	                    #{m.descricao}
+	                </p:column>
+	                
+	                <p:column headerText="Editar" style="width:10%">
+	                 	<p:commandButton
+							actionListener="#{opcionalController.editar(m)}"
+							update="@form" process="@this" icon="ui-icon-pencil" />
+	                </p:column>
+	                
+	                <p:column headerText="Excluir" style="width:10%">
+	                    <p:commandButton
+							actionListener="#{opcionalController.excluir(m)}"
+							update="@form" process="@this" icon="ui-icon-close" />
+	                </p:column>
+	
+	            </p:dataTable>	
+					
+			</h:form>
+		</p:panel>
+
+
+
+
+
+	</ui:define>
+
+</ui:composition>
+   
+    
+    
+</html>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="1.0">
+	<persistence-unit name="br.edu.unipam.rest" transaction-type="JTA">
+		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+   		<jta-data-source>locadora</jta-data-source>
+		
+		
+		<class>br.unipam.locadora.entity.Modelo</class>
+		<class>br.unipam.locadora.entity.Cliente</class>
+		<class>br.unipam.locadora.entity.Opcional</class>
+		<class>br.unipam.locadora.entity.Usuario</class>
+		<class>br.unipam.locadora.entity.Veiculo</class>
+		<class>br.unipam.locadora.entity.LocacaoVeiculo</class>
+		<class>br.unipam.locadora.entity.Locacao</class>
+		<properties>
+			<property name="eclipselink.logging.level" value="FINE"/>
+			<property name="eclipselink.logging.parameters" value="true"/>
+			<property name="eclipselink.ddl-generation" value="create-or-extend-tables"/>
+		</properties>
+	</persistence-unit>
+</persistence>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+	<title>Java Web</title>
+</h:head>
+
+<h:body>
+
+	<p:ajaxStatus onstart="PF('statusDialog').show();"
+		onsuccess="PF('statusDialog').hide();" />
+
+	<p:dialog modal="true" draggable="false" closable="false"
+		resizable="false" header="Carregando" widgetVar="statusDialog">
+
+		<p:graphicImage value="/conteudo/imagem/ajaxloadingbar.gif" />
+	</p:dialog>
+
+	<p:graphicImage value="/conteudo/imagem/logo.png" width="50"/>
+
+	<h:form>
+
+		<p:menubar>
+
+
+			<p:submenu label="Parâmetros">
+				<p:menuitem value="Modelo" url="/parametros/modelo.jsf" />
+				<p:menuitem value="Opcional" url="/parametros/opcional.jsf" />
+				<p:menuitem value="Usuário" url="/parametros/usuario.jsf" />
+			</p:submenu>
+			
+			<p:submenu label="Cadastro">
+				 <p:menuitem value="Cliente" url="/cadastros/cliente.jsf" />
+				 <p:menuitem value="Veiculo" url="/cadastros/veiculo.jsf" />
+			</p:submenu>
+			
+			<p:submenu label="Locação">
+				 <p:menuitem value="Registrar" url="/locacao/registrar.jsf" />
+				 <p:menuitem value="Consultar" url="/locacao/consulta.jsf" />
+				 <p:menuitem value="Gráfico por veículo" url="/locacao/graficoPizza.jsf" />
+				 <p:menuitem value="Gráfico recebimentos" url="/locacao/graficoLinha.jsf" />
+			</p:submenu>
+
+		</p:menubar>
+
+	</h:form>
+	
+	<br/>
+	
+	<ui:insert name="conteudo" />
+
+
+</h:body>
+
+</html>

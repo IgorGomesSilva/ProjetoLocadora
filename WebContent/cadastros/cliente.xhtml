@@ -1,0 +1,78 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      	xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:p="http://primefaces.org/ui"
+		xmlns:ui="http://java.sun.com/jsf/facelets">
+    
+    <ui:composition template="../template.xhtml">
+
+	<ui:define name="conteudo">
+		<p:panel header="Cliente">
+			<h:form id="formulario">
+				<p:growl showDetail="false" sticky="true"/>
+
+
+				<h:inputHidden value="#{clienteController.cliente.idCliente}" />
+
+
+				<h:panelGrid columns="2">
+					<h:outputLabel value="Nome:"/>
+					<p:inputText value="#{clienteController.cliente.nome}"/>
+					
+					<h:outputLabel value="CPF:"/>
+					<p:inputMask mask="999.999.999-99" value="#{clienteController.cliente.cpf}"/>
+				</h:panelGrid>
+
+				<p:commandButton value="Salvar"
+					actionListener="#{clienteController.salvar()}"
+					update="@form" icon="ui-icon-check" />
+					
+				<br/><br/>
+					
+				 <p:dataTable 
+	                value="#{clienteController.listar()}"
+	                var="m"
+		            emptyMessage="Nenhum cliente cadastrado"
+		            paginator="true"
+		            rows="20"
+		            id="tabela">
+	
+	                <p:column headerText="Codigo" style="width:10%">
+	                    #{m.idCliente}
+	                </p:column>
+	
+	                <p:column headerText="Nome" style="width:40%">
+	                    #{m.nome}
+	                </p:column>
+	                
+	                 <p:column headerText="CPF" style="width:40%">
+	                    #{m.cpf}
+	                </p:column>
+	                
+	                <p:column headerText="Editar" style="width:10%">
+	                 	<p:commandButton
+							actionListener="#{clienteController.editar(m)}"
+							update="@form" process="@this" icon="ui-icon-pencil" />
+	                </p:column>
+	                
+	                <p:column headerText="Excluir" style="width:10%">
+	                    <p:commandButton
+							actionListener="#{clienteController.excluir(m)}"
+							update="@form" process="@this" icon="ui-icon-close" />
+	                </p:column>
+	
+	            </p:dataTable>	
+					
+			</h:form>
+		</p:panel>
+
+
+
+
+
+	</ui:define>
+
+</ui:composition>
+   
+    
+    
+</html>
